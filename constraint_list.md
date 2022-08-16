@@ -28,8 +28,10 @@ Orthogonally adjacent cells cannot contain consecutive digits.
 	DIAGONAL
 Diagonally adjacent cells cannot contain consecutive digits.
 ## Whisper Rules
-Whisper rules should be set as `false` or as a natural number `k`.
-`ORTHOGONAL_WHISPER`
+Whisper rules should be set as `false` or as a natural number `k`, e.g. `ORTHOGONAL_WHISPER = 3;`
+
+	ORTHOGONAL_WHISPER
+
 Digits in vertically or horizontally adjacent cells must differ at least k.
 
 	DIAGONAL_WHISPER_LtR
