@@ -1,6 +1,6 @@
 # Miracle Sudoku Solver and Generator
 ## Overview
-This project consists in a MiniZinc solver for *Miracle Sudoku*, a Sudoku variant with additional constraints of various kinds (check [this](https://www.youtube.com/watch?v=yKf9aUIxdb4) for the original Miracle Sudoku, by Mitchell Lee), and a Miracle Sudoku generator, able to produce (uniquely determined) Sudoku with a desidered ruleset from a large selection.
+This project consists in a MiniZinc solver for *Miracle Sudoku*, a Sudoku variant with additional constraints of various kinds, and a Miracle Sudoku generator, able to produce (uniquely determined) Sudoku with a desidered ruleset from a large selection.
 
 ## So, what is a Miracle Sudoku?
 The first, original "Miracle Sudoku" was ideated by Mitchell Lee and presented on YouTube by Simon Anthony of *Cracking the Cryptic* in [this](https://www.youtube.com/watch?v=yKf9aUIxdb4) video. It consists in a Sudoku board with only $2$ given digits and a slightly more complex ruleset, in particular in addition to the classic Sudoku rules, there are
