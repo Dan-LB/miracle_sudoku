@@ -32,6 +32,6 @@ Whisper rules should be set as `false` or as a natural number `k`.
 `ORTHOGONAL_WHISPER`
 Digits in vertically or horizontally adjacent cells must differ at least k.
 
-`DIAGONAL_WHISPER_LtR
-DIAGONAL_WHISPER_RtL`
+	DIAGONAL_WHISPER_LtR
+	DIAGONAL_WHISPER_RtL
 Digits sharing the NW/SE (or the NE/SW) corner must differ at least k.
