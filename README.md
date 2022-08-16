@@ -55,9 +55,9 @@ More in general, with Miracle Sudoku I will consider Sudoku variants with any so
 
 For more examples, you can check [The Dutch Miracle](https://www.youtube.com/watch?v=wUnnXwLTbnA&t=457s) by Aad Van De Wetering, or [Dotless Kropki Sudoku X](https://www.youtube.com/watch?v=1QP7yviZYTU&t=262s) by Phistomefel, again on Cracking the Cryptic.
 
-## Currently available constraints
+## Constraints
 
-Constraints for a Miracle Sudoku could be very different from each other. For the sake of simplicity I decided to consider only "structure independent" constraints, i.e. constraints that do not require any kind of input. The considered constraints could be divided into $3$ groups:
+Constraints for a Miracle Sudoku could be very different from each other. For the sake of simplicity I decided to consider only "structure independent" constraints, i.e. constraints that do not require any kind of additional input. The considered constraints could be divided into $3$ groups:
 1. Uniqueness rules:
 	* Each digits appears exactly once in a principal diagonal 
 	* Each digits appears at most once in every diagonal along a specified direction
@@ -70,7 +70,11 @@ Constraints for a Miracle Sudoku could be very different from each other. For th
 	* Digits in vertically or horizontally adjacent cells must differ at least **n**
 	* Digits in diagonal adjacent cells must differ at least **n**
 
-Of course, some constraints are stronger than others. It is interesting to note that uniqueness rules are combinatorial, therefore given a solution $S$ and a permutation $\rho$ of digits in $1..9$, then $\rho(S)$ is a new solution. Successor rules are not permutation invariant, but they are invariant under shifts (i.e. $1\to 2, 2\to 3,\dots$), while whisper rules are more complex, and in general they are not shift-invariant.
+Of course, some constraints are stronger than others. It is interesting to note that uniqueness rules are combinatorial, therefore given a solution $S$ and a permutation $\rho$ of digits in $1..9$, then $\rho(S)$ is a new solution. This means that an empty board with only combinatorial constraints has either no solutions (for example, in the case of uniqueness rule for both diagonals), or at least $9!$.
+Solutions for successor rules are not permutation invariant, but they are invariant under shifts (i.e. $1\to 2, 2\to 3,\dots$), so if there are a solution for an emptu board, there are at least 9 of them. 
+Whisper rules are far more restrictive, and in general the solutions are not shift-invariant.
+
+For the full list of constraints actually avaible, check the  `constraint_list` file.
 
 ## MiniZinc Solver Syntax
 
