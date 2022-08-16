@@ -36,17 +36,17 @@ The interesting thing about this puzzle is that, despite having a very small amo
 <details>
   <summary>And the solution</summary>
 
-	    7 9 2  4 8 6  1 5 3  
-	    3 1 5  7 9 2  4 8 6  
-	    6 4 8  3 1 5  7 9 2  
-	    
-	    2 7 9  6 4 8  3 1 5  
-	    5 3 1  2 7 9  6 4 8  
-	    8 6 4  5 3 1  2 7 9  
-	    
-	    9 2 7  8 6 4  5 3 1  
-	    1 5 3  9 2 7  8 6 4  
-	    4 8 6  1 5 3  9 2 7 
+	4 8 3  7 2 6  1 5 9  
+	7 2 6  1 5 9  4 8 3  
+	1 5 9  4 8 3  7 2 6  
+
+	8 3 7  2 6 1  5 9 4  
+	2 6 1  5 9 4  8 3 7  
+	5 9 4  8 3 7  2 6 1  
+
+	3 7 2  6 1 5  9 4 8  
+	6 1 5  9 4 8  3 7 2  
+	9 4 8  3 7 2  6 1 5
     
 </details>
 
