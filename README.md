@@ -57,21 +57,23 @@ For more examples, you can check [The Dutch Miracle](https://www.youtube.com/wat
 
 ## Constraints
 
-Constraints for a Miracle Sudoku could be very different from each other. For the sake of simplicity I decided to consider only "structure independent" constraints, i.e. constraints that do not require any kind of additional input. The considered constraints could be divided into $3$ groups:
-1. Uniqueness rules:
+Constraints for a Miracle Sudoku could be very different from each other. For the sake of simplicity I decided to consider only "structure independent" constraints, i.e. constraints that do not require any kind of additional input. The considered constraints can  be divided into $6$ groups. Here it follows the groups list with a few examples:
+1. Uniqueness:
 	* Each digits appears exactly once in a principal diagonal 
 	* Each digits appears at most once in every diagonal along a specified direction
-	* The same digits are not king-knight move connected
-	* The same digits are not chess-knight move connected
-2. Successor rules:
+2. Chess-like:
+	* The same digits are not connected by a knight move 
+3. Successor:
 	* No digits in vertically or horizontally adjacent cells can be consecutive digits 
-	* No digits in diagonal adjacent cells can be consecutive digits 
-3. "Whisper" rules:
+4. "Whisper":
 	* Digits in vertically or horizontally adjacent cells must differ at least **n**
-	* Digits in diagonal adjacent cells must differ at least **n**
+5. Order:
+	* Digits in the first column are in ascending or descending order (e.g. 456789123)
+6. Parity:
+	* Digits in the center of each subsquare is even
 
-Of course, some constraints are stronger than others. It is interesting to note that uniqueness rules are combinatorial, therefore given a solution $S$ and a permutation $\rho$ of digits in $1..9$, then $\rho(S)$ is a new solution. This means that an empty board with only combinatorial constraints has either no solutions (for example, in the case of uniqueness rule for both diagonals), or at least $9!$.
-Solutions for successor rules are not permutation invariant, but they are invariant under shifts (i.e. $1\to 2, 2\to 3,\dots$), so if there are a solution for an emptu board, there are at least 9 of them. 
+Of course, some constraints are stronger than others. It is interesting to note that uniqueness rules are combinatorial, therefore given a solution $S$ and a permutation $\rho$ of digits in $1..9$, then $\rho(S)$ is a new solution. This means that an empty board with only combinatorial constraints has either no solutions (for example, in the case of uniqueness rule for every diagonals), or at least $9!$.
+Solutions for successor rules are not permutation invariant, but they are invariant under shifts (i.e. $1\to 2, 2\to 3,\dots$), so if there are a solution for an empty board, there are at least 9 of them. 
 Whisper rules are far more restrictive, and in general the solutions are not shift-invariant.
 
 For the full list of constraints actually avaible, check the  `constraint_list` file.
@@ -80,27 +82,50 @@ For the full list of constraints actually avaible, check the  `constraint_list` 
 
 The syntax of the Data files for the solver is very straightforward. The starting position is given by the `start` array, as in the MiniZinc [tutorial](https://www.minizinc.org/doc-2.5.5/en/modelling2.html?highlight=sudoku) for the sudoku solver. The rules must be declared as boolean variables. Here it follows the Data file for the original Miracle Sudoku:  
 
-    %UNIQUENESS RULES
+	%	 ___________________
+	%	|     RULE LIST     |
+	%	|___________________|
+	
+	
+	%  UNIQUENESS RULES
 	DIAGONAL_LtR = false;
 	DIAGONAL_RtL = false;
 
 	MULTI_DIAGONAL_LtR = false;
 	MULTI_DIAGONAL_RtL = false;
 
+	SQUARE_POS = false;
+
+	%  CHESS RULES
 	KING = true;
 	KNIGHT = true;
+	PLUS =  false;
+	CROSS = false;
 
-	%SUCCESSOR RULES
-	ORTHOGONAL = false;
+	%  SUCCESSOR RULES
+	ORTHOGONAL = true;
 	DIAGONAL = false;
 
-	%WHISPER RULES
+	%  WHISPER RULES
 	ORTHOGONAL_WHISPER = false;
 
 	DIAGONAL_WHISPER_LtR = false;
 	DIAGONAL_WHISPER_RtL = false;
 
+	%	ORDER RULES
+	FIRST_COLUMN_ORDER = false;
+	FIRST_ROW_ORDER = false;
 
+	LAST_COLUMN_ORDER = false;
+	LAST_ROW_ORDER = false;
+
+	%  PARITY RULES
+	CENTER_EVEN = false;
+	CENTER_ODD = false; 
+
+	%	 ___________________
+	%	| STARTING BOARD    |
+	%	|___________________|
 
 	start=[|
 	0, 0, 0, 0, 0, 0, 0, 0, 0|
