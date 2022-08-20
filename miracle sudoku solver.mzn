@@ -7,8 +7,13 @@ bool: DIAGONAL_RtL;
 bool: MULTI_DIAGONAL_LtR;
 bool: MULTI_DIAGONAL_RtL;
 
+bool: SQUARE_POS;
+
+%    CHESS RULES
 bool: KING;
 bool: KNIGHT;
+bool: PLUS;
+bool: CROSS;
 
 %    SUCCESSOR RULES
 bool: ORTHOGONAL;
@@ -20,6 +25,16 @@ int: ORTHOGONAL_WHISPER;
 int: DIAGONAL_WHISPER_LtR;
 int: DIAGONAL_WHISPER_RtL;
 
+%	  ORDER RULES
+bool: FIRST_COLUMN_ORDER;
+bool: FIRST_ROW_ORDER;
+
+bool: LAST_COLUMN_ORDER;
+bool: LAST_ROW_ORDER;
+
+%	PARITY
+bool: CENTER_EVEN;
+bool: CENTER_ODD;
 
 %SETTINGS
 
@@ -88,6 +103,14 @@ constraint if MULTI_DIAGONAL_LtR then
       ) 
 endif;
 
+%  square_pos
+constraint if SQUARE_POS then
+  forall (k, l in 1..3) (
+    alldifferent( [puzzle[ k+3*n, l+3*m ] |
+      n, m in 0..2] )
+     )      
+endif;
+
 %  multi_diagonal_RtL
 constraint if MULTI_DIAGONAL_RtL then
   forall (i in 1..N) (
@@ -97,6 +120,9 @@ constraint if MULTI_DIAGONAL_RtL then
       j in 1..i ] )          
       ) 
 endif;
+      
+ %|      CHESS RULES    |
+% \_____________________/     
       
 %  king             
 constraint if KING then 
@@ -132,6 +158,22 @@ constraint if KNIGHT then
       puzzle[i, j] != puzzle[i-1, j+2]
 )) endif;
 
+%  plus
+constraint if PLUS then 
+  forall (i in 1..7) (
+    forall (j in 1..9) (
+        puzzle[i, j] != puzzle[i+2, j] /\
+        puzzle[j, i] != puzzle[j, i+2]
+)) endif;
+
+%  cross
+constraint if CROSS then 
+  forall (i in 1..7) (
+    forall (j in 1..7) (
+        puzzle[i, j] != puzzle[i+2, j+2] /\
+        puzzle[i, j+2] != puzzle[i+2, j]
+)) endif;
+
 
 %|    SUCCESSOR RULES   |
 % \_____________________/
@@ -150,7 +192,8 @@ constraint if ORTHOGONAL then
     puzzle[i,9] != puzzle[i+1, 9] +1 /\
     puzzle[i,9] != puzzle[i+1, 9] -1)  
   endif;
-                
+
+% diagonal          
 constraint if DIAGONAL then
   forall (i, j in 1..8) (
     puzzle[i, j] != puzzle[i+1, j+1] +1 /\
@@ -158,7 +201,8 @@ constraint if DIAGONAL then
     puzzle[i, j+1] != puzzle[i+1, j] +1 /\
     puzzle[i, j+1] != puzzle[i+1, j] -1)
   endif;       
-                
+                            
+
 %|       WHISPER RULES  |
 % \_____________________/
 
@@ -193,6 +237,59 @@ constraint if DIAGONAL_WHISPER_RtL != 0 then
     puzzle[i, j] - puzzle[i+1, j-1] <= -DIAGONAL_WHISPER_RtL
 ))endif; 
 
+
+%|         ORDER RULES  |
+% \_____________________/
+
+%  first_column_order                                                                 
+constraint if FIRST_COLUMN_ORDER then
+  forall (i in 1..(N-1)) (
+    (puzzle[i, 1] - puzzle[i+1, 1] + 9) mod 9 = 1) \/
+  forall (i in 1..(N-1)) (
+    (puzzle[i, 1] - puzzle[i+1, 1] + 9) mod 9 = 8) 
+endif;
+
+%  first_row_order                                                                 
+constraint if FIRST_ROW_ORDER then
+  forall (i in 1..(N-1)) (
+    (puzzle[1, i] - puzzle[1, i+1] + 9) mod 9 = 1) \/
+  forall (i in 1..(N-1)) (
+    (puzzle[1, i] - puzzle[1, i+1] + 9) mod 9 = 8) 
+endif;
+
+%  last_column_order 
+constraint if LAST_COLUMN_ORDER then
+  forall (i in 1..(N-1)) (
+    (puzzle[i, N] - puzzle[i+1, N] + 9) mod 9 = 1) \/
+  forall (i in 1..(N-1)) (
+    (puzzle[i, N] - puzzle[i+1, N] + 9) mod 9 = 8) 
+endif;
+
+%  last_row_order                                                                 
+constraint if LAST_ROW_ORDER then
+  forall (i in 1..(N-1)) (
+    (puzzle[N, i] - puzzle[N, i+1] + 9) mod 9 = 1) \/
+  forall (i in 1..(N-1)) (
+    (puzzle[N, i] - puzzle[N, i+1] + 9) mod 9 = 8) 
+endif;
+
+
+%|       PARITY RULES   |
+% \_____________________/
+
+%  center even
+constraint if CENTER_EVEN then 
+  forall (k in 0..2) (
+    forall (l in 0..2) (
+        (puzzle[2+3*k, 2+3*l] mod 2) = 0
+)) endif;
+
+%  center odd
+constraint if CENTER_ODD then 
+  forall (k in 0..2) (
+    forall (l in 0..2) (
+        (puzzle[2+3*k, 2+3*l] mod 2) = 1
+)) endif;
 
 
 %._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._._.~._.
