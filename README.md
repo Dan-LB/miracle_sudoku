@@ -51,7 +51,7 @@ The interesting thing about this puzzle is that, despite having a very small amo
 </details>
 
 
-More in general, with Miracle Sudoku I will consider Sudoku variants with any sort of combinatorial constraints, that with a somewhat small amount of starting digits leads to a single, unique solution.
+More in general, with Miracle Sudoku I will consider Sudoku variants with any sort of combinatorial constraints, such that with a somewhat small amount of starting digits leads to a single, unique solution.
 
 For more examples, you can check [The Dutch Miracle](https://www.youtube.com/watch?v=wUnnXwLTbnA&t=457s) by Aad Van De Wetering, or [Dotless Kropki Sudoku X](https://www.youtube.com/watch?v=1QP7yviZYTU&t=262s) by Phistomefel, again on Cracking the Cryptic.
 
