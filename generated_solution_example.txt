@@ -4,7 +4,7 @@ PLUS
 CROSS
 ORTHOGONAL
 
-Uniqueness reached after 2 iterations.
+Uniqueness reached after 4 iterations.
 
 Given board:
 - - 1  - 2 -  - 3 -  
