@@ -73,10 +73,12 @@ Constraints for a Miracle Sudoku could be very different from each other. For th
 	* Digits in the center of each subsquare is even
 
 Of course, some constraints are stronger than others. It is interesting to note that uniqueness rules are combinatorial, therefore given a solution $S$ and a permutation $\rho$ of digits in $1..9$, then $\rho(S)$ is a new solution. This means that an empty board with only combinatorial constraints has either no solutions (for example, in the case of uniqueness rule for every diagonals), or at least $9!$.
+
 Solutions for successor rules are not permutation invariant, but they are invariant under shifts (i.e. $1\to 2, 2\to 3,\dots$), so if there are a solution for an empty board, there are at least 9 of them. 
+
 Whisper rules are far more restrictive, and in general the solutions are not shift-invariant.
 
-For the full list of constraints actually avaible, check the  `constraint_list` file.
+For the full list of constraints actually avaible, check the  `constraint_list_description` file.
 
 ## MiniZinc Solver Syntax
 
