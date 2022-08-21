@@ -1,0 +1,49 @@
+%  UNIQUENESS RULES
+DIAGONAL_LtR = false;
+DIAGONAL_RtL = false;
+
+MULTI_DIAGONAL_LtR = false;
+MULTI_DIAGONAL_RtL = false;
+
+SQUARE_POS = false;
+
+%  CHESS RULES
+KING = true;
+KNIGHT = true;
+PLUS =  false;
+CROSS = false;
+
+%  SUCCESSOR RULES
+ORTHOGONAL = false;
+DIAGONAL = false;
+
+%  WHISPER RULES
+ORTHOGONAL_WHISPER = false;
+
+DIAGONAL_WHISPER_LtR = false;
+DIAGONAL_WHISPER_RtL = false;
+
+%	  ORDER RULES
+FIRST_COLUMN_ORDER = false;
+FIRST_ROW_ORDER = false;
+
+LAST_COLUMN_ORDER = false;
+LAST_ROW_ORDER = false;
+
+%  PARITY RULES
+CENTER_EVEN = false;
+CENTER_ODD = false; 
+
+
+
+
+start=[|
+0, 0, 0, 0, 0, 0, 0, 0, 0|
+0, 0, 0, 0, 0, 0, 0, 0, 0|
+0, 0, 0, 0, 0, 0, 0, 0, 0|
+0, 0, 0, 0, 2, 0, 0, 0, 0|
+0, 0, 0, 3, 1, 4, 0, 0, 0|
+0, 0, 0, 0, 5, 0, 0, 0, 0|
+0, 0, 0, 0, 0, 0, 0, 0, 0|
+0, 0, 0, 0, 0, 0, 0, 0, 0|
+0, 0, 0, 0, 0, 0, 0, 0, 0|];
