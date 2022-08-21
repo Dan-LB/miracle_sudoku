@@ -138,3 +138,18 @@ The syntax of the Data files for the solver is very straightforward. The startin
 	0, 0, 0, 0, 0, 0, 0, 0, 0|
 	0, 0, 0, 0, 0, 0, 0, 0, 0|];
 
+## The Generator
+The generator is a small program in Python that uses the Solver to generate an uniquely determined Sudoku board with a given set of rules and with some starting numbers.
+The idea is to:
+* Read the starting digits in the file `starting_board`
+* Pass the rules from the list of constraints
+* As long as the solution of the sudoku is not uniquely determined, keep adding digits to reduce the number of solutions
+* Give in output (in the file `solution`) the completed starting board and the solution.
+
+For example, for the original Miracle Sudoku, you can write in the command line
+    `python Generator.py  KNIGHT KING ORTHOGONAL`
+and provide the starting digits.
+Due to the fact that a Miracle with these starting digits is already uniquely determined, the generator will generate the given board! However, you can provide a different starting board (even an empty one!) and get a different uniquely determined board.
+
+If you want to use non-boolean constraints (for example, whispers), then the syntax is slightly different, as you need to provide the int value in this way: "rule_name=n". For example, if you want to add a diagonal whisper rule you can write
+    `python Generator.py  KNIGHT DIAGONAL_WHISPER_LtR=3`
